@@ -7,12 +7,19 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.viewpager2.widget.ViewPager2
 import com.example.pdiapp.CarDataWebSocketListener.Companion.NORMAL_CLOSURE_STATUS
+import com.example.pdiapp.databinding.ActivityMainBinding
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -20,31 +27,56 @@ import okhttp3.WebSocket
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<SocketViewModel>()
+    private lateinit var binding: ActivityMainBinding
+
+    private val viewPager: ViewPager2 by lazy { findViewById(R.id.viewPager) }
+
+/*
     private val requestDataButton: Button by lazy { findViewById(R.id.requestDataButton) }
     private val progressBar: ProgressBar by lazy { findViewById(R.id.progressBar) }
     private val graphView: GraphView by lazy { findViewById(R.id.graphView) }
     private val output: TextView by lazy { findViewById(R.id.textView) }
-    private val client by lazy { OkHttpClient() }
 
+    private val client by lazy { OkHttpClient() }
     private var ws: WebSocket? = null
 
     private var pointsPlotted: Int = 1
     private val xOffset: Double = 500.0       // Offsets the graph so the axes don't show
     private val dataArray = arrayOf( DataPoint(0.0,0.0) );
     private val series = LineGraphSeries<DataPoint>(dataArray)
-
+*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.socketEventsFlow().collectLatest {
+                    // TODO get event and do what you want to to
+                }
+            }
+        }
+
+        val fragmentTitles = arrayListOf(
+            "Live Throttle Data",
+            "Steering Data"
+        )
+
+        val adapter = ViewPagerFragmentAdapter(this, fragmentTitles)
+        viewPager.adapter = adapter
+
+        /*
         requestDataButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             requestCarData()
         }
 
         initGraphView()
+         */
     }
-
+/*
     override fun onResume() {
         super.onResume()
         start()
@@ -147,4 +179,6 @@ class MainActivity : AppCompatActivity() {
             graphView.viewport.setMinX((pointsPlotted-200).toDouble() + xOffset)
         }
     }
+
+ */
 }
