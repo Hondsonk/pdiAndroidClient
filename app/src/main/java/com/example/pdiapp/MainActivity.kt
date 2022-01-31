@@ -61,7 +61,8 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentTitles = arrayListOf(
             "Live Throttle Data",
-            "Steering Data"
+            "Steering Data",
+            "Suspension Stress"
         )
 
         val adapter = ViewPagerFragmentAdapter(this, fragmentTitles)

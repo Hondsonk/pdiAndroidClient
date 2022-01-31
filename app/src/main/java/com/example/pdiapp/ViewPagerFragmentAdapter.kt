@@ -19,6 +19,7 @@ class ViewPagerFragmentAdapter(
         when (position) {
             0 -> return FragmentOne()
             1 -> return FragmentTwo()
+            2 -> return FragmentThree()
         }
         return FragmentOne()
     }

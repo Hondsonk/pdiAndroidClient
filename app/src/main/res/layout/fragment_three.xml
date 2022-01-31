@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentThree">
+
+    <ImageView
+        android:id="@+id/car"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/pdi_app_suspension">
+    </ImageView>
+
+    <ProgressBar
+        android:id="@+id/driverFront"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="80dp"
+        android:progress="75"
+        android:progressTint="#FF00FF"
+        android:rotation="270"
+        android:transformPivotX="0dp" />
+
+    <ProgressBar
+        android:id="@+id/passengerFront"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="300dp"
+        android:progress="75"
+        android:progressTint="#FFFF00"
+        android:rotation="270"
+        android:transformPivotX="0dp" />
+
+    <ProgressBar
+        android:id="@+id/driverRear"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="440dp"
+        android:layout_marginLeft="250dp"
+        android:progress="75"
+        android:progressTint="#00FF00"
+        android:rotation="270"
+        android:transformPivotX="0dp" />
+
+    <ProgressBar
+        android:id="@+id/passengerRear"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="375dp"
+        android:layout_marginLeft="300dp"
+        android:progress="75"
+        android:progressTint="#FF0000"
+        android:rotation="270"
+        android:transformPivotX="0dp" />
+
+
+</RelativeLayout>
